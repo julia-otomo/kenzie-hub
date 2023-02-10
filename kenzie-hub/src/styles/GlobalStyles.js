@@ -47,4 +47,30 @@ table {
 button {
     cursor: pointer;
 }
+
+:root {
+    --color-primary: #FF577F;
+    --color-primary-focus: #FF427F;
+    --color-primary-negative: #59323F;
+    --grey-4: #121214;
+    --grey-3: #212529;
+    --grey-2: #343B41;
+    --grey-1: #868E96;
+    --grey-0: #F8F9FA;
+    --success-color: #3FE864;
+    --failure-color: #E83F5B;
+    --title-1: 2.4rem;
+    --title-2: 1.8rem;
+    --title-3: 1.6rem;
+    --headline: 1.3rem;
+    --font-weight-bold: 700;
+    --line-height-default: 150%;
+    --border-radius-default: 4px;
+
+    font-size: 60%;
+
+    @media (min-width: 1024px) {
+        font-size: 62.5%;
+    }
+}
 `;
