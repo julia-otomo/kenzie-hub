@@ -20,6 +20,7 @@ export const StyledInputContainer = styled.div`
     box-sizing: border-box;
     background-color: var(--grey-2);
     color: var(--grey-0);
+    border: 0.98px solid transparent;
   }
 
   input:focus {
@@ -29,5 +30,7 @@ export const StyledInputContainer = styled.div`
   p {
     font-size: var(--headline);
     color: var(--color-primary);
+    line-height: var(--line-height-default);
+    text-align: justify;
   }
 `;

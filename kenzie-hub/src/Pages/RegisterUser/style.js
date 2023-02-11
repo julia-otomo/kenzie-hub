@@ -34,7 +34,7 @@ export const StyledRegisterContainer = styled.div`
       box-sizing: border-box;
     }
 
-    a:focus {
+    a:hover {
       background-color: var(--grey-2);
     }
   }
@@ -85,6 +85,7 @@ export const StyledRegisterContainer = styled.div`
           color: var(--grey-1);
           padding: 0 1rem;
           box-sizing: border-box;
+          cursor: pointer;
 
           option {
             color: var(--grey-0);

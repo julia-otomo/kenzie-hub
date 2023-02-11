@@ -15,7 +15,7 @@ const schema = yup.object({
     .string()
     .required("Campo obrigatório")
     .matches(
-      /^(\d)([a-z])([A-Z])(\W|_)(.{8,})$/,
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$",
       "A senha deve contar pelo menos 1 número, 1 letra minúscula, 1 letra maiúscula, 1 caractere especial e deve possuir no mínimo 8 caracteres no total"
     ),
   confirmPassword: yup

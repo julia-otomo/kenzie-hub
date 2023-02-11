@@ -13,11 +13,11 @@ export const StyledLoginContainer = styled.div`
   }
 
   .login__container {
-    width: 369px;
+    width: 400px;
     max-width: 80%;
     background-color: var(--grey-3);
     border-radius: 3px;
-    padding: 2rem 1.7rem;
+    padding: 4rem 1.7rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
