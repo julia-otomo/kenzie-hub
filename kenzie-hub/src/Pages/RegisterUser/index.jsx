@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../Components/Button";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { StyledRegisterContainer } from "./style";
 
 const schema = yup.object({
   name: yup.string().required("Campo obrigatório"),
@@ -48,7 +49,7 @@ export function RegisterUser() {
     }
   }
   return (
-    <div className="register__container">
+    <StyledRegisterContainer className="register__container">
       <div className="register__container--header">
         <h1>Kenzie Hub</h1>
         <Link to={"/"}>Voltar</Link>
@@ -120,6 +121,6 @@ export function RegisterUser() {
           <Button buttonName="Cadastrar" disabled={false} />
         </form>
       </div>
-    </div>
+    </StyledRegisterContainer>
   );
 }

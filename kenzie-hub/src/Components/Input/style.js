@@ -28,6 +28,6 @@ export const StyledInputContainer = styled.div`
 
   p {
     font-size: var(--headline);
-    color: var(--grey-0);
+    color: var(--color-primary);
   }
 `;
