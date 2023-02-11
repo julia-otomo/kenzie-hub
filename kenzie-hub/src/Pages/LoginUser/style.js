@@ -5,6 +5,8 @@ export const StyledLoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  width: 370px;
+  max-width: 90%;
 
   h1 {
     color: var(--color-primary);
@@ -13,8 +15,6 @@ export const StyledLoginContainer = styled.div`
   }
 
   .login__container {
-    width: 400px;
-    max-width: 80%;
     background-color: var(--grey-3);
     border-radius: 3px;
     padding: 4rem 1.7rem;
@@ -23,6 +23,7 @@ export const StyledLoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 100%;
 
     h2 {
       color: var(--grey-0);

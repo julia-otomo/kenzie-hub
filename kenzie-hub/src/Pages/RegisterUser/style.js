@@ -44,7 +44,7 @@ export const StyledRegisterContainer = styled.div`
     flex-direction: column;
     gap: 3rem;
     align-items: center;
-    padding: 2rem 1.1rem;
+    padding: 2rem;
     box-sizing: border-box;
     background-color: var(--grey-3);
     border-radius: 3px;
@@ -62,6 +62,7 @@ export const StyledRegisterContainer = styled.div`
     }
 
     form {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
