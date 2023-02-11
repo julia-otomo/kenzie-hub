@@ -7,7 +7,6 @@ export function InputContainer({
   register,
   placeholder,
   errormessage,
-  onchange,
 }) {
   return (
     <StyledInputContainer className="input__container">
