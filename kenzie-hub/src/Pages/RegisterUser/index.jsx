@@ -7,6 +7,7 @@ import { Button } from "../../Components/Button";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { StyledRegisterContainer } from "./style";
+import { useEffect, useState } from "react";
 
 const schema = yup.object({
   name: yup.string().required("Campo obrigatório"),
@@ -15,7 +16,7 @@ const schema = yup.object({
     .string()
     .required("Campo obrigatório")
     .matches(
-      "^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$",
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/,
       "A senha deve contar pelo menos 1 número, 1 letra minúscula, 1 letra maiúscula, 1 caractere especial e deve possuir no mínimo 8 caracteres no total"
     ),
   confirmPassword: yup
@@ -23,11 +24,20 @@ const schema = yup.object({
     .required("Campo obrigatório")
     .oneOf([yup.ref("password")], "Campo obrigatório"),
   bio: yup.string().required("Campo Obrigatório"),
-  contact: yup.string().required("Campo obrigatório"),
+  course_module: yup.string().required("Campo obrigatório"),
   module: yup.string().required("Campo obrigatório"),
 });
 
 export function RegisterUser() {
+  const navigate = useNavigate();
+  const tokenUser = localStorage.getItem("@TOKEN") || "";
+
+  useEffect(() => {
+    tokenUser !== "" ? navigate("/dashboard") : null;
+  }, [tokenUser]);
+
+  const [disabled, setDisabled] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -36,16 +46,17 @@ export function RegisterUser() {
     resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate();
-
   async function onSubmitForm(data) {
     try {
+      setDisabled(true);
       const response = await api.post("users", data);
-      toast.success("Cadastro realizado com sucesso !");
+      toast.success("Conta criada com sucesso !");
       setTimeout(navigate("/"), 3000);
     } catch (err) {
-      toast.error("Email já cadastrado no sistema");
+      toast.error("Ops! Algo deu errado");
       console.log(err);
+    } finally {
+      setDisabled(false);
     }
   }
   return (
@@ -99,9 +110,17 @@ export function RegisterUser() {
             placeholder="Fale um pouco sobre você"
             errormessage={errors.bio?.message}
           />
+          <InputContainer
+            label="Contato"
+            id="contact"
+            type="text"
+            register={register("contact")}
+            placeholder="Opção de contato"
+            errormessage={errors.contact?.message}
+          />
           <div className="select__container">
-            <label htmlFor="moduleCategory">Selecionar Módulo</label>
-            <select id="moduleCategory" {...register("module")}>
+            <label htmlFor="course_module">Selecionar Módulo</label>
+            <select id="course_module" {...register("course_module")}>
               <option value="">Selecione o módulo</option>
               <option value="Primeiro módulo (Introdução ao Frontend)">
                 Primeiro módulo (Introdução ao Frontend)
@@ -118,7 +137,7 @@ export function RegisterUser() {
             </select>
             <p>{errors.module?.message}</p>
           </div>
-          <Button buttonName="Cadastrar" disabled={false} />
+          <Button buttonName="Cadastrar" disabled={disabled} />
         </form>
       </div>
     </StyledRegisterContainer>

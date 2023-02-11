@@ -6,7 +6,7 @@ import { InputContainer } from "../../Components/Input";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { StyledLoginContainer } from "./style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../Components/Button";
 
 const schema = yup.object({
@@ -16,12 +16,19 @@ const schema = yup.object({
 
 export function LoginUser() {
   const [disabled, setDisabled] = useState(false);
+  const navigate = useNavigate();
+
+  const tokenUser = localStorage.getItem("@TOKEN") || "";
+
+  useEffect(() => {
+    tokenUser !== "" ? navigate("/dashboard") : null;
+  }, [tokenUser]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const navigate = useNavigate();
 
   async function onSubmitForm(data) {
     try {
@@ -51,7 +58,6 @@ export function LoginUser() {
             register={register("email")}
             placeholder="Digite seu email"
             errormessage={errors.email?.message}
-            // onchange={() => setDisabled(false)}
           />
           <InputContainer
             label="Senha"
