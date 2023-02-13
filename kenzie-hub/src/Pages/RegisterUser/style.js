@@ -7,6 +7,8 @@ export const StyledRegisterContainer = styled.div`
   gap: 18px;
   width: 370px;
   max-width: 90%;
+  height: 90%;
+  align-self: center;
 
   .register__container--header {
     display: flex;

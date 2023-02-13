@@ -19,13 +19,13 @@ const schema = yup.object({
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$/,
       "A senha deve contar pelo menos 1 número, 1 letra minúscula, 1 letra maiúscula, 1 caractere especial e deve possuir no mínimo 8 caracteres no total"
     ),
-  confirmPassword: yup
+  passwordConfirm: yup
     .string()
     .required("Campo obrigatório")
     .oneOf([yup.ref("password")], "Campo obrigatório"),
   bio: yup.string().required("Campo Obrigatório"),
+  contact: yup.string().required("Campo obrigatório"),
   course_module: yup.string().required("Campo obrigatório"),
-  module: yup.string().required("Campo obrigatório"),
 });
 
 export function RegisterUser() {
@@ -135,7 +135,7 @@ export function RegisterUser() {
                 Quarto módulo (Backend Avançado)
               </option>
             </select>
-            <p>{errors.module?.message}</p>
+            <p>{errors.course_module?.message}</p>
           </div>
           <Button buttonName="Cadastrar" disabled={disabled} />
         </form>

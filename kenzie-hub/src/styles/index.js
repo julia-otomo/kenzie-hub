@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledApp = styled.div`
   background-color: var(--grey-4);
   height: 100vh;
+  overflow-y: auto;
   width: 100vw;
   display: flex;
   justify-content: center;
