@@ -96,9 +96,9 @@ export function RegisterUser() {
           />
           <InputContainer
             label="Confirmar senha"
-            id="confirmPassword"
+            id="passwordConfirm"
             type="password"
-            register={register("confirmPassword")}
+            register={register("passwordConfirm")}
             placeholder="Digite sua senha novamente"
             errormessage={errors.passwordConfirm?.message}
           />
