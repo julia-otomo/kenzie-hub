@@ -1,13 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { InputContainer } from "../../Components/Input";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../Components/Button";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
 import { StyledRegisterContainer } from "./style";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 
 const schema = yup.object({
   name: yup.string().required("Campo obrigatório"),
@@ -22,22 +21,14 @@ const schema = yup.object({
   passwordConfirm: yup
     .string()
     .required("Campo obrigatório")
-    .oneOf([yup.ref("password")], "Campo obrigatório"),
+    .oneOf([yup.ref("password"), null], "Campo obrigatório"),
   bio: yup.string().required("Campo Obrigatório"),
   contact: yup.string().required("Campo obrigatório"),
   course_module: yup.string().required("Campo obrigatório"),
 });
 
 export function RegisterUser() {
-  const navigate = useNavigate();
-  const tokenUser = localStorage.getItem("@TOKEN") || "";
-
-  useEffect(() => {
-    tokenUser !== "" ? navigate("/dashboard") : null;
-  }, [tokenUser]);
-
-  const [disabled, setDisabled] = useState(false);
-
+  const { disabled, doUserRegister } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -46,19 +37,6 @@ export function RegisterUser() {
     resolver: yupResolver(schema),
   });
 
-  async function onSubmitForm(data) {
-    try {
-      setDisabled(true);
-      const response = await api.post("users", data);
-      toast.success("Conta criada com sucesso !");
-      setTimeout(navigate("/"), 3000);
-    } catch (err) {
-      toast.error("Ops! Algo deu errado");
-      console.log(err);
-    } finally {
-      setDisabled(false);
-    }
-  }
   return (
     <StyledRegisterContainer className="register__container">
       <div className="register__container--header">
@@ -69,7 +47,7 @@ export function RegisterUser() {
       <div className="register__container--form">
         <h2>Crie sua conta</h2>
         <p className="p__register">Rápido e grátis, vamos nessa</p>
-        <form onSubmit={handleSubmit(onSubmitForm)}>
+        <form onSubmit={handleSubmit(doUserRegister)}>
           <InputContainer
             label="Nome"
             id="name"

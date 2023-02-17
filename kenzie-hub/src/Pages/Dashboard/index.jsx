@@ -1,34 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { api } from "../../services/api";
+import { useContext } from "react";
+import { UserContext } from "../../Contexts/UserContext";
 import { StyledDashboardContainer } from "./style";
 
 export function Dashboard() {
-  const [student, setStudent] = useState({});
-  const navigate = useNavigate();
-  const tokenUser = localStorage.getItem("@TOKEN") || "";
-  const userId = localStorage.getItem("@USERID") || "";
+  const { resetLocalStorage, student } = useContext(UserContext);
 
-  useEffect(() => {
-    tokenUser == "" ? navigate("/") : null;
-  }, [tokenUser]);
-
-  useEffect(() => {
-    async function getStudentInformation() {
-      try {
-        const response = await api.get(`users/${JSON.parse(userId)}`);
-        setStudent(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getStudentInformation();
-  }, [student]);
-
-  function resetLocalStorage() {
-    localStorage.clear();
-    navigate("/");
-  }
   return (
     <StyledDashboardContainer className="dashboard__container">
       <div className="dashboard__container--header">
@@ -52,12 +28,9 @@ export function Dashboard() {
           )}
         </div>
       </div>
-      <div className="dashboard__container--advice">
-        <div>
-          <h2>Que pena! Estamos em desenvolvimento {":("}</h2>
-          <p>
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </p>
+      <div className="dashboard__container--techs">
+        <div className="techs__header">
+          <h2>Tecnologias</h2>
         </div>
       </div>
     </StyledDashboardContainer>

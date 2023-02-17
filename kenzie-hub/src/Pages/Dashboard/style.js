@@ -13,6 +13,7 @@ export const StyledDashboardContainer = styled.div`
     box-shadow: 0 1px 0 var(--grey-3);
     padding: 28px 13px;
     box-sizing: border-box;
+    position: fixed;
 
     div {
       display: flex;
@@ -52,6 +53,7 @@ export const StyledDashboardContainer = styled.div`
     box-shadow: 0 1px 0 var(--grey-3);
     padding: 28px 13px;
     box-sizing: border-box;
+    margin-top: 73px;
 
     div {
       width: 774px;
@@ -75,7 +77,7 @@ export const StyledDashboardContainer = styled.div`
     }
   }
 
-  .dashboard__container--advice {
+  .dashboard__container--techs {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -83,7 +85,7 @@ export const StyledDashboardContainer = styled.div`
     padding: 28px 13px;
     box-sizing: border-box;
 
-    div {
+    .techs__header {
       width: 774px;
       max-width: 100%;
       display: flex;
@@ -93,12 +95,6 @@ export const StyledDashboardContainer = styled.div`
       h2 {
         font-size: var(--title-2);
         font-weight: var(--font-weight-bold);
-        color: var(--grey-0);
-        line-height: var(--line-height-default);
-      }
-
-      p {
-        font-size: var(--title-3);
         color: var(--grey-0);
         line-height: var(--line-height-default);
       }
