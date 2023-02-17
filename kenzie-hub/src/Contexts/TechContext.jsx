@@ -7,6 +7,8 @@ export const TechContext = createContext({});
 
 export function TechProvider({ children }) {
   const { techList, setTechList } = useContext(UserContext);
+  const [openModal, setOpenModal] = useState(false);
+  const [tech, setTech] = useState(null);
 
   async function createTechs(data) {
     const tokenUser = localStorage.getItem("@TOKEN") || "";
@@ -44,7 +46,7 @@ export function TechProvider({ children }) {
       toast.success(
         "As informações da tecnologia foram atualizadas com sucesso !"
       );
-      setTechList(updateTechs);
+      setTechList(updatedTechs);
     } catch (error) {
       console.log(error);
       toast.error("Não foi possível atualizar as informações da tecnologia");
@@ -70,7 +72,17 @@ export function TechProvider({ children }) {
   }
 
   return (
-    <TechContext.Provider value={{ createTechs, updateTechs, removeTechs }}>
+    <TechContext.Provider
+      value={{
+        createTechs,
+        updateTechs,
+        removeTechs,
+        openModal,
+        setOpenModal,
+        tech,
+        setTech,
+      }}
+    >
       {children}
     </TechContext.Provider>
   );

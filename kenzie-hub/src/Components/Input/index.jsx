@@ -11,13 +11,7 @@ export function InputContainer({
   return (
     <StyledInputContainer className="input__container">
       <label htmlFor={id}>{label}</label>
-      <input
-        type={type}
-        id={id}
-        {...register}
-        placeholder={placeholder}
-        onChange={onchange}
-      />
+      <input type={type} id={id} {...register} placeholder={placeholder} />
       {errormessage ? <p>{errormessage}</p> : null}
     </StyledInputContainer>
   );

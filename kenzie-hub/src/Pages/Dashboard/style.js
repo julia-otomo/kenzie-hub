@@ -8,6 +8,7 @@ export const StyledDashboardContainer = styled.div`
   .dashboard__container--header {
     height: 73px;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     box-shadow: 0 1px 0 var(--grey-3);
@@ -89,7 +90,8 @@ export const StyledDashboardContainer = styled.div`
       width: 774px;
       max-width: 100%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: space-between;
       gap: 2rem;
 
       h2 {
@@ -98,6 +100,26 @@ export const StyledDashboardContainer = styled.div`
         color: var(--grey-0);
         line-height: var(--line-height-default);
       }
+
+      button {
+        width: 32.49px;
+        height: 32px;
+        background-color: var(--grey-3);
+        border: none;
+        border-radius: var(--border-radius-default);
+        font-size: var(--title-2);
+        color: var(--grey-0);
+      }
+
+      button:hover {
+        background-color: var(--grey-2);
+      }
+    }
+
+    .techs__container {
+      width: 774px;
+      max-width: 100%;
+      padding: 28px 13px;
     }
   }
 `;

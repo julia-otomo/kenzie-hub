@@ -1,9 +1,15 @@
 import { useContext } from "react";
+import { ModalCreateTech } from "../../Components/Modal/ModalCreateTech";
+import { UserTechList } from "../../Components/UserTechList";
+import { TechContext } from "../../Contexts/TechContext";
 import { UserContext } from "../../Contexts/UserContext";
 import { StyledDashboardContainer } from "./style";
 
 export function Dashboard() {
-  const { resetLocalStorage, student } = useContext(UserContext);
+  const { resetLocalStorage, student, techList, setTechList } =
+    useContext(UserContext);
+  const { createTechs, updateTechs, removeTechs, openModal, setOpenModal } =
+    useContext(TechContext);
 
   return (
     <StyledDashboardContainer className="dashboard__container">
@@ -31,8 +37,18 @@ export function Dashboard() {
       <div className="dashboard__container--techs">
         <div className="techs__header">
           <h2>Tecnologias</h2>
+          <button onClick={() => setOpenModal(true)}>+</button>
+        </div>
+        <div className="techs__container">
+          {techList.length === 0 ? (
+            <h2>Nenhuma tecnologia foi cadastrada ainda</h2>
+          ) : (
+            <UserTechList />
+          )}
         </div>
       </div>
+
+      {openModal ? <ModalCreateTech /> : null}
     </StyledDashboardContainer>
   );
 }
