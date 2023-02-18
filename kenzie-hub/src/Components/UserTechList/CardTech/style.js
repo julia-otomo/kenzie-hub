@@ -10,6 +10,7 @@ export const StyledCardTech = styled.li`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 
   h3 {
     font-size: var(--title-3);

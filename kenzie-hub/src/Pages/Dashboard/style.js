@@ -74,6 +74,7 @@ export const StyledDashboardContainer = styled.div`
       p {
         font-size: var(--headline);
         color: var(--grey-1);
+        line-height: var(--line-height-default);
       }
     }
   }
@@ -120,6 +121,16 @@ export const StyledDashboardContainer = styled.div`
       width: 774px;
       max-width: 100%;
       padding: 28px 13px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .dashboard__container--student-information {
+      div {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
   }
 `;

@@ -1,15 +1,14 @@
 import { useContext } from "react";
 import { ModalCreateTech } from "../../Components/Modal/ModalCreateTech";
+import { ModalUpdateAndDeleteTech } from "../../Components/Modal/ModalUpdateAndDeleteTechj";
 import { UserTechList } from "../../Components/UserTechList";
 import { TechContext } from "../../Contexts/TechContext";
 import { UserContext } from "../../Contexts/UserContext";
 import { StyledDashboardContainer } from "./style";
 
 export function Dashboard() {
-  const { resetLocalStorage, student, techList, setTechList } =
-    useContext(UserContext);
-  const { createTechs, updateTechs, removeTechs, openModal, setOpenModal } =
-    useContext(TechContext);
+  const { resetLocalStorage, student, techList } = useContext(UserContext);
+  const { openModal, setOpenModal, tech, setTech } = useContext(TechContext);
 
   return (
     <StyledDashboardContainer className="dashboard__container">
@@ -49,6 +48,7 @@ export function Dashboard() {
       </div>
 
       {openModal ? <ModalCreateTech /> : null}
+      {tech ? <ModalUpdateAndDeleteTech /> : null}
     </StyledDashboardContainer>
   );
 }

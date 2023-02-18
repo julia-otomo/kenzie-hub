@@ -29,5 +29,6 @@ export const StyledSelect = styled.div`
   p {
     font-size: var(--headline);
     color: var(--color-primary);
+    line-height: var(--line-height-default);
   }
 `;

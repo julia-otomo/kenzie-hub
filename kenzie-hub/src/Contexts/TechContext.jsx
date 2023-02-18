@@ -38,9 +38,9 @@ export function TechProvider({ children }) {
 
       const updatedTechs = techList.map((tech) => {
         if (tech.id === id) {
-          return { ...techList, ...data };
+          return { ...tech, ...data };
         } else {
-          return { ...techList };
+          return { ...tech };
         }
       });
       toast.success(
@@ -63,12 +63,18 @@ export function TechProvider({ children }) {
         },
       });
       toast.success("Tecnologia removida com sucesso !");
-      const filteredTechs = techList.map((tech) => tech.id !== id);
+      const filteredTechs = techList.filter((tech) => tech.id !== id);
       setTechList(filteredTechs);
     } catch (error) {
       console.log(error);
       toast.error("Não foi possível remover essa tecnologia");
     }
+  }
+
+  function setTechById(event) {
+    const techId = event.target.id;
+    const techFound = techList.find((tech) => tech.id == techId);
+    setTech(techFound);
   }
 
   return (
@@ -81,6 +87,7 @@ export function TechProvider({ children }) {
         setOpenModal,
         tech,
         setTech,
+        setTechById,
       }}
     >
       {children}

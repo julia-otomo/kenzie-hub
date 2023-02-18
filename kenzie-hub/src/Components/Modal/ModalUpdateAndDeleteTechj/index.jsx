@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { ModalPattern } from "../ModalStructure";
 import { useContext } from "react";
 import { TechContext } from "../../../Contexts/TechContext";
@@ -9,39 +7,36 @@ import { SelectContainer } from "../../Select";
 import { Button } from "../../Button/index";
 import { UserContext } from "../../../Contexts/UserContext";
 
-const schema = yup.object({
-  title: yup
-    .string()
-    .required("É necessário informar a tecnologia a ser cadastrada"),
-  status: yup
-    .string()
-    .required("É necessário informar o nível de aprendizado da tecnologia"),
-});
-
-export function ModalCreateTech() {
-  const { createTechs, setOpenModal } = useContext(TechContext);
+export function ModalUpdateAndDeleteTech() {
+  const { updateTechs, removeTechs, tech, setTech } = useContext(TechContext);
   const { disabled } = useContext(UserContext);
 
-  function onSubmitForm(data) {
-    createTechs(data);
-    setOpenModal(false);
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      title: tech.title,
+      status: tech.status,
+    },
+  });
+
+  function onSubmitFormUpdate(data) {
+    updateTechs(tech.id, data);
+    setTech(null);
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  function onSubmitFormDelete(event) {
+    event.preventDefault();
+    removeTechs(tech.id);
+    setTech(null);
+  }
 
   const formModal = (
-    <form action="" onSubmit={handleSubmit(onSubmitForm)}>
+    <form action="">
       <InputContainer
         label={"Nome"}
         id={"title"}
         type={"text"}
         register={register("title")}
         placeholder={"Nome da Tecnologia"}
-        errormessage={errors.title?.message}
       />
       <SelectContainer
         id={"status"}
@@ -51,15 +46,26 @@ export function ModalCreateTech() {
         value2={"Intermediário"}
         value3={"Avançado"}
         opt1={"Selecione o status"}
-        errormessage={errors.status?.message}
       />
-      <Button buttonName={"Cadastrar"} disabled={disabled} />
+      <div className="buttons__container">
+        <Button
+          buttonName={"Salvar Alterações"}
+          disabled={disabled}
+          callback={handleSubmit(onSubmitFormUpdate)}
+        />
+        <button
+          className="delete__button"
+          onClick={(event) => onSubmitFormDelete(event)}
+        >
+          Excluir
+        </button>
+      </div>
     </form>
   );
   return (
     <ModalPattern
-      nameTitle={"Cadastrar Tecnologia"}
-      callback={() => setOpenModal(false)}
+      nameTitle={"Tecnologia Detalhes"}
+      callback={() => setTech(null)}
       children={formModal}
     />
   );

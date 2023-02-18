@@ -15,7 +15,7 @@ export const StyledModal = styled.div`
   width: 369px;
   max-width: 90vw;
   background-color: var(--grey-3);
-  height: 342px;
+  min-height: 310px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,5 +54,40 @@ export const StyledModal = styled.div`
 
   .modal__form {
     width: 90%;
+    height: fit-content;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+
+    margin-top: 1.2rem;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+
+      .buttons__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        button {
+          width: 204px;
+          max-width: 60%;
+        }
+
+        .delete__button {
+          max-width: 30%;
+          width: 98px;
+          background-color: var(--grey-1);
+          color: var(--grey-0);
+          border: none;
+          border-radius: var(--border-radius-default);
+          font-size: var(--title-3);
+        }
+
+        .delete__button:hover {
+          background-color: var(--grey-2);
+        }
+      }
+    }
   }
 `;
