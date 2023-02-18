@@ -121,6 +121,14 @@ export const StyledDashboardContainer = styled.div`
       width: 774px;
       max-width: 100%;
       padding: 28px 13px;
+
+      .empty__techs {
+        font-size: var(--title-3);
+        font-weight: var(--font-weight-bold);
+        color: var(--grey-0);
+        line-height: var(--line-height-default);
+        margin-top: 2rem;
+      }
     }
   }
 

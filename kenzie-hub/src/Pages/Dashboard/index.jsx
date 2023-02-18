@@ -40,7 +40,9 @@ export function Dashboard() {
         </div>
         <div className="techs__container">
           {techList.length === 0 ? (
-            <h2>Nenhuma tecnologia foi cadastrada ainda</h2>
+            <h2 className="empty__techs">
+              Nenhuma tecnologia foi cadastrada ainda {"(｡•́︿•̀｡)"}
+            </h2>
           ) : (
             <UserTechList />
           )}
