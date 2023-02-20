@@ -8,7 +8,7 @@ import { StyledDashboardContainer } from "./style";
 
 export function Dashboard() {
   const { resetLocalStorage, student, techList } = useContext(UserContext);
-  const { openModal, setOpenModal, tech, setTech } = useContext(TechContext);
+  const { openModal, setOpenModal, tech } = useContext(TechContext);
 
   return (
     <StyledDashboardContainer className="dashboard__container">
